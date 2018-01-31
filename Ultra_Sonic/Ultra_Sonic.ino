@@ -2,6 +2,7 @@ int led =13;
 int t=0;
 int trigPin = 2;
 int echoPin = 4;
+
 void setup() {
 pinMode(led,OUTPUT);
 pinMode(echoPin,INPUT);    //Echo
@@ -10,6 +11,7 @@ digitalWrite(led,LOW);
 Serial.begin(9600);
 digitalWrite(trigPin,LOW);
 }
+
 void loop() {
   int time2,tim;
   digitalWrite(trigPin,HIGH);
