@@ -119,9 +119,11 @@ void loop() {
 			//Writes to servo
 			//Serial.print(toSend);
 			//Serial.print("\n");
-			myservo.write(toSend);
-				}
-			}
+     if(toSend >= 0 && toSend < 180) {
+			  myservo.write(toSend);
+      }
+	  }
+  }
 			delay(150);
 
 	
@@ -137,4 +139,5 @@ void setColor(int red, int green, int blue)
 
 //TO-DO
 //Test run on arduino
+//Play music on app
 //Check delay
