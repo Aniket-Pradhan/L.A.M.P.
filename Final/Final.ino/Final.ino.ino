@@ -12,16 +12,20 @@
 #include <Servo.h>
 
 //PIN INFO
-//LED -> 3 PWM
+//LED -> 5 PWM
 //LDR -> A0 Analog Input
-//SERVO -> 9 PWM
-//RED -> 5 PWM
+//SERVO -> 3 PWM
+//DC MOTOR -> 6 PWM
+//RED -> 9 PWM
 //BLUE -> 11 PWM
 //GREEN -> 10 PWM
 
 //GLOBAL VARIABLES
-int ledpin = 3;
-int redPin = 5; //IT HAS TO BE A PWM
+const int dc_a = 8;
+const int dc_b = 7;
+const int dcMotorPin = 6;
+int ledpin = 5;
+int redPin = 9; //IT HAS TO BE A PWM
 int greenPin = 10;
 int bluePin = 11;
 int ldrpin = A0;
@@ -37,7 +41,7 @@ int echoPin = 4;
 
 //SETUP CODE
 void setup() {
- 	myservo.attach(9);
+ 	myservo.attach(3);
 	Serial.begin(9600);
 	pinMode(ledpin,OUTPUT);
 	pinMode(echoPin,INPUT);    //Echo
@@ -47,6 +51,10 @@ void setup() {
 	pinMode(redPin, OUTPUT);
 	pinMode(greenPin, OUTPUT);
 	pinMode(bluePin, OUTPUT);
+  pinMode(dc_a,OUTPUT);
+  pinMode(dc_b,OUTPUT);
+  digitalWrite(dc_a,LOW);
+  digitalWrite(dc_b,LOW);
 //	pinMode(ledPin, OUTPUT);
 //	bluetooth.begin(9600);
 }
@@ -109,12 +117,12 @@ void loop() {
 			if(toSend == 190){
 				//Move dc motor UP, rotate motor clockwise.
 			}
-			if(toSend == 191){
+			if(toSend == 195){
 				//Move dc motor down, rotate motor anticlockwise
 			}
-			if(toSend == 192){
-				//Move dc motor to default location
-			}
+//			if(toSend == 192){
+//				Move dc motor to default location
+//			}
 
 			//Writes to servo
 			//Serial.print(toSend);

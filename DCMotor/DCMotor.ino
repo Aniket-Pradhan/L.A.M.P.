@@ -1,31 +1,31 @@
 //UP -> 190
 //DOWN -> 191
 
-const int pwm = 3;
+const int dcMotorPin = 6;
 const int a = 6;
 const int b = 7;
 
 void setup() {
-  //pinMode(pwm,OUTPUT);
-  pinMode(a,OUTPUT);
-  pinMode(b,OUTPUT);
-  digitalWrite(a,LOW);
-  digitalWrite(b,LOW);
+  //pinMode(dcMotorPin,OUTPUT);
+  pinMode(dc_a,OUTPUT);
+  pinMode(dc_b,OUTPUT);
+  digitalWrite(dc_a,LOW);
+  digitalWrite(dc_b,LOW);
   
 }
 
 void loop() {
-  analogWrite(pwm,25);
-  digitalWrite(a,HIGH);
-  digitalWrite(b,LOW);
+  analogWrite(dcMotorPin,25);
+  digitalWrite(dc_a,HIGH);
+  digitalWrite(dc_b,LOW);
   delay(5000);
-  digitalWrite(a,LOW);
-  digitalWrite(b,LOW);
+  digitalWrite(dc_a,LOW);
+  digitalWrite(dc_b,LOW);
   delay(5000);
-  digitalWrite(a,LOW);
-  digitalWrite(b,HIGH);
+  digitalWrite(dc_a,LOW);
+  digitalWrite(dc_b,HIGH);
   delay(5000);
-  digitalWrite(a,LOW);
-  digitalWrite(b,LOW);
+  digitalWrite(dc_a,LOW);
+  digitalWrite(dc_b,LOW);
   delay(5000);
 }
