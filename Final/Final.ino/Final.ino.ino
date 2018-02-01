@@ -127,7 +127,7 @@ void loop() {
 				//Move dc motor down, rotate motor anticlockwise
         digitalWrite(dc_a,LOW);
         digitalWrite(dc_b,HIGH);
-        delay(5000);
+        delay(200);
         digitalWrite(dc_a,LOW);
         digitalWrite(dc_b,LOW);
 			}
