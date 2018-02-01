@@ -61,6 +61,7 @@ void setup() {
 
 //LOOPING CODE
 void loop() {
+   analogWrite(dcMotorPin,50); // DC motor speed control
 	if(Serial.available() > 0){
 		int toSend = Serial.read();
 		if(toSend == 200) {
@@ -116,9 +117,19 @@ void loop() {
 			//Writes to DC Motor
 			if(toSend == 190){
 				//Move dc motor UP, rotate motor clockwise.
+       digitalWrite(dc_a,HIGH); // Moving the motor
+       digitalWrite(dc_b,LOW);
+       delay(200);
+       digitalWrite(dc_a,LOW); // Reseting the motor
+       digitalWrite(dc_b,LOW);
 			}
 			if(toSend == 195){
 				//Move dc motor down, rotate motor anticlockwise
+        digitalWrite(dc_a,LOW);
+        digitalWrite(dc_b,HIGH);
+        delay(5000);
+        digitalWrite(dc_a,LOW);
+        digitalWrite(dc_b,LOW);
 			}
 //			if(toSend == 192){
 //				Move dc motor to default location

@@ -1,5 +1,5 @@
 //UP -> 190
-//DOWN -> 191
+//DOWN -> 195
 
 const int dcMotorPin = 6;
 const int a = 6;
@@ -15,7 +15,7 @@ void setup() {
 }
 
 void loop() {
-  analogWrite(dcMotorPin,25);
+  analogWrite(dcMotorPin,50);
   digitalWrite(dc_a,HIGH);
   digitalWrite(dc_b,LOW);
   delay(5000);
