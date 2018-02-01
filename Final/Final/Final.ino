@@ -61,9 +61,32 @@ void setup() {
 
 //LOOPING CODE
 void loop() {
-   analogWrite(dcMotorPin,50); // DC motor speed control
+//   analogWrite(dcM/otorPin,50); // DC motor speed control
+
+   //Add code for Switch
+     int time2,tim;
+      digitalWrite(trigPin,HIGH);
+      delayMicroseconds(100);
+      digitalWrite(trigPin,LOW); 
+      time2 = pulseIn(echoPin,HIGH);
+      tim = time2/2;
+      int dist = 0.034*tim;
+      Serial.println(dist);
+      if (dist<20 && dist>0){
+        if (t==1){
+        digitalWrite(ledpin,HIGH);
+        t=0;
+        }
+      else{
+        digitalWrite(ledpin,LOW);
+        t=1;
+        }
+      }
+      
 	if(Serial.available() > 0){
 		int toSend = Serial.read();
+    Serial.print(toSend);
+    Serial.print("tosned");
 		if(toSend == 200) {
 			//Add code for varying RGB lights
 			setColor(1, 0, 0);  // red lowest brightness
@@ -86,33 +109,15 @@ void loop() {
 			delay(1000);
 		}
 		else {
-			//Add code for LDR
-			value = analogRead(ldrpin);
-			value = constrain(value,900,1010);
-			value = map(value,900,1010,255,0);
-			Serial.println(value);
-			analogWrite(ledpin, value);
-			//delay(30);
+//			//Add code for LDR
+//			value = analogRead(ldrpin);
+//			value = constrain(value,900,1010);
+//			value = map(value,900,1010,255,0);
+//			Serial.println(value);
+//			analogWrite(ledpin, value);
+//			//delay(30);
 		
-			//Add code for Switch
-			int time2,tim;
-			digitalWrite(trigPin,HIGH);
-			delayMicroseconds(100);
-			digitalWrite(trigPin,LOW); 
-			time2 = pulseIn(echoPin,HIGH);
-			tim = time2/2;
-			int dist = 0.034*tim;
-			Serial.println(dist);
-			if (dist<20 && dist>0){
-				if (t==1){
-				digitalWrite(ledpin,HIGH);
-				t=0;
-				}
-			else{
-				digitalWrite(ledpin,LOW);
-				t=1;
-				}
-			}
+			
 
 			//Writes to DC Motor
 			if(toSend == 190){
