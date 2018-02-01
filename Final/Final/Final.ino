@@ -64,8 +64,8 @@ void loop() {
 //   analogWrite(dcM/otorPin,50); // DC motor speed control
       //Add code for LDR
       value = analogRead(ldrpin);
-      value = constrain(value,900,1010);
-      value = map(value,900,1010,255,0);
+      value = constrain(value,0,255);
+      value = map(value,0,255,255,30);
       Serial.println(value);
       analogWrite(ledpin, value);
       //delay(30);
