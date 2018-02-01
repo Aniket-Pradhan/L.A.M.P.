@@ -88,7 +88,8 @@ void loop() {
 		else {
 			//Add code for LDR
 			value = analogRead(ldrpin);
-			value = map(0,1023,0,255);
+			value = constrain(value,900,1010);
+			value = map(value,900,1010,255,0);
 			Serial.println(value);
 			analogWrite(ledpin, value);
 			//delay(30);
