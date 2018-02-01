@@ -1,4 +1,4 @@
-int ledpin = 3;
+int ledpin = 11;
 int ldrpin = A1;
 int value = 0;
 
@@ -11,13 +11,16 @@ void setup()
 void loop()
 {
   value = analogRead(ldrpin);
-  value = constrain(value,900,1010);
-  value = map(value,900,1010,255,0);
-
+  value = constrain(value,0,255);
+  value = map(value,0,255,255,50);
 
   Serial.println(value);
+//  Serial.println("1");
+//  Serial.println(value1);
+//  Serial.println("2");
+//  Serial.println(value2);
   analogWrite(ledpin, value);
 
-  delay(30);
+  delay(500);
 }
 

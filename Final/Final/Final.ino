@@ -62,7 +62,13 @@ void setup() {
 //LOOPING CODE
 void loop() {
 //   analogWrite(dcM/otorPin,50); // DC motor speed control
-
+      //Add code for LDR
+      value = analogRead(ldrpin);
+      value = constrain(value,900,1010);
+      value = map(value,900,1010,255,0);
+      Serial.println(value);
+      analogWrite(ledpin, value);
+      //delay(30);
    //Add code for Switch
      int time2,tim;
       digitalWrite(trigPin,HIGH);
@@ -109,13 +115,7 @@ void loop() {
 			delay(1000);
 		}
 		else {
-//			//Add code for LDR
-//			value = analogRead(ldrpin);
-//			value = constrain(value,900,1010);
-//			value = map(value,900,1010,255,0);
-//			Serial.println(value);
-//			analogWrite(ledpin, value);
-//			//delay(30);
+		
 		
 			
 
