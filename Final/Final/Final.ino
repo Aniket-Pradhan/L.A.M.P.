@@ -53,6 +53,7 @@ void setup() {
 	pinMode(bluePin, OUTPUT);
   pinMode(dc_a,OUTPUT);
   pinMode(dc_b,OUTPUT);
+  setColor(0, 0, 0);
   digitalWrite(dc_a,LOW);
   digitalWrite(dc_b,LOW);
 //	pinMode(ledPin, OUTPUT);
@@ -66,8 +67,9 @@ void loop() {
       value = analogRead(ldrpin);
       value = constrain(value,0,255);
       value = map(value,0,255,255,30);
-      Serial.println(value);
-      analogWrite(ledpin, value);
+      Serial.print(value);
+      Serial.println(" ldr");
+//      analogWrite(ledpin, value);
       //delay(30);
    //Add code for Switch
      int time2,tim;
@@ -77,10 +79,12 @@ void loop() {
       time2 = pulseIn(echoPin,HIGH);
       tim = time2/2;
       int dist = 0.034*tim;
-      Serial.println(dist);
+      Serial.print(dist);
+      Serial.println(" dist");
       if (dist<20 && dist>0){
         if (t==1){
-        digitalWrite(ledpin,HIGH);
+//        digitalWrite(ledpin,HIGH);
+          analogWrite(ledpin, value);
         t=0;
         }
       else{
@@ -92,32 +96,35 @@ void loop() {
 	if(Serial.available() > 0){
 		int toSend = Serial.read();
     Serial.print(toSend);
-    Serial.print("tosned");
+    Serial.println(" tosend");
 		if(toSend == 200) {
 			//Add code for varying RGB lights
-			setColor(1, 0, 0);  // red lowest brightness
-			delay(1000);
-			setColor(50, 0, 0);  // red
-			delay(1000);
-			setColor(140, 0, 0);  // red
-			delay(1000);
-			setColor(255, 0, 0);  // red
-			delay(1000);
-			setColor(0, 255, 0);  // green
-			delay(1000);
-			setColor(0, 0, 255);  // blue
-			delay(1000);
-			setColor(255, 255, 0);  // yellow
-			delay(1000);  
-			setColor(80, 0, 80);  // purple
-			delay(1000);
-			setColor(255, 50, 0);  // Orange
-			delay(1000);
+//			setColor(1, 0, 0);  // red lowest brightness
+//			delay(1000);
+//			setColor(50, 0, 0);  // red
+//			delay(1000);
+//			setColor(140, 0, 0);  // red
+//			delay(1000);
+      while(toSend != 200){
+        toSend = Serial.read();
+  			setColor(255, 0, 0);  // red
+			  delay(100);
+			  setColor(0, 255, 0);  // green
+  			delay(100);
+			  setColor(0, 0, 255);  // blue
+  			delay(100);
+			  setColor(255, 255, 0);  // yellow
+			  delay(100);  
+			  setColor(80, 0, 80);  // purple
+			  delay(100);
+			  setColor(255, 50, 0);  // Orange
+			  delay(100);
+		  }
 		}
 		else {
 		
 		
-			
+			setColor(0, 0, 0);
 
 			//Writes to DC Motor
 			if(toSend == 190){
