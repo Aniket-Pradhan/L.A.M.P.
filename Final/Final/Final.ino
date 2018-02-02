@@ -30,6 +30,7 @@ int greenPin = 10;
 int bluePin = 11;
 int ldrpin = A0;
 int value = 0;
+int rgb_global=0;
 Servo myservo;
 int t=0;
 int trigPin = 2;
@@ -88,9 +89,13 @@ void loop() {
         t=0;
         }
       else{
-        digitalWrite(ledpin,LOW);
+//        digitalWrite(ledpin,LOW);
+          analogWrite(ledpin,0);
         t=1;
         }
+      }
+      if (t==0){
+        analogWrite(ledpin,value);
       }
       
 	if(Serial.available() > 0){
@@ -105,22 +110,26 @@ void loop() {
 //			delay(1000);
 //			setColor(140, 0, 0);  // red
 //			delay(1000);
-      while(toSend != 200){
-        toSend = Serial.read();
-  			setColor(255, 0, 0);  // red
-			  delay(100);
-			  setColor(0, 255, 0);  // green
-  			delay(100);
-			  setColor(0, 0, 255);  // blue
-  			delay(100);
-			  setColor(255, 255, 0);  // yellow
-			  delay(100);  
-			  setColor(80, 0, 80);  // purple
-			  delay(100);
-			  setColor(255, 50, 0);  // Orange
-			  delay(100);
-		  }
-		}
+//      while(toSend != 200){
+//        toSend = Serial.read();
+        rgb_global = 1;}
+     else if (toSend == 201){
+      rgb_global = 0; 
+     }
+//  			setColor(255, 0, 0);  // red
+//        delay(100);
+//        setColor(0, 255, 0);  // green
+//        delay(100);
+//        setColor(0, 0, 255);  // blue
+//        delay(100);
+//        setColor(255, 255, 0);  // yellow
+//        delay(100);  
+//        setColor(80, 0, 80);  // purple
+//        delay(100);
+//        setColor(255, 50, 0);  // Orange
+//        delay(100);
+//		  }
+		
 		else {
 		
 		
@@ -151,9 +160,26 @@ void loop() {
 			//Serial.print(toSend);
 			//Serial.print("\n");
      if(toSend >= 0 && toSend < 180) {
+        Serial.println("loooooooooooooooooooooop");
 			  myservo.write(toSend);
       }
 	  }
+  }
+  if (rgb_global==1){
+        setColor(255, 0, 0);  // red
+        delay(100);
+        setColor(0, 255, 0);  // green
+        delay(100);
+        setColor(0, 0, 255);  // blue
+        delay(100);
+        setColor(255, 255, 0);  // yellow
+        delay(100);  
+        setColor(80, 0, 80);  // purple
+        delay(100);
+        setColor(255, 50, 0);  // Orange
+  }
+  else{
+    setColor(0,0,0);
   }
 			delay(150);
 
